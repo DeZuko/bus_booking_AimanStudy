@@ -37,9 +37,9 @@ class _SignInState extends State<SignIn> {
                 ),
 
                 const Padding(
-                  padding: EdgeInsets.only(top: 150, left: 60, right: 70),
+                  padding: EdgeInsets.only(top: 150, left: 62, right: 67),
                   child: Text(
-                    'Login',
+                    'Welcome!',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 50,
@@ -185,20 +185,20 @@ class _SignInState extends State<SignIn> {
 
   OutlineInputBorder myinputborder() {
     //return type is OutlineInputBorder
-    return OutlineInputBorder(
+    return const OutlineInputBorder(
         //Outline border type for TextFeild
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         borderSide: BorderSide(
-          color: Colors.blue.shade100,
+          color: Color.fromARGB(255, 207, 199, 213),
           width: 3,
         ));
   }
 
   OutlineInputBorder myfocusborder() {
-    return OutlineInputBorder(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+    return const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         borderSide: BorderSide(
-          color: Colors.blue.shade300,
+          color: Color.fromARGB(255, 115, 75, 154),
           width: 3,
         ));
   }

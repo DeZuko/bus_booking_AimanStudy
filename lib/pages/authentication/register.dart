@@ -133,14 +133,13 @@ class _RegisterState extends State<Register> {
                       child: TextFormField(
                           controller: mobileHp,
                           keyboardType: TextInputType.number,
-                          obscureText: true,
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
                               return 'This field is required';
                             }
 
                             if (value.trim().length < 9) {
-                              return 'phone number must be at least 9 characters in length';
+                              return 'Phone number must be at least 9 characters in length';
                             }
                             // Return null if the entered username is valid
                             return null;
