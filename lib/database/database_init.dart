@@ -28,11 +28,11 @@ class DbInit {
     await db.execute("""
     INSERT INTO station_type(station,code,imageURL)
     VALUES
-      ('Kuala Lumpur','KUL','assets/images/KL.png'),
-      ('Johor Bahru','JHB','assets/images/JB.png'),
-      ('Kota Bahru','KBR','assets/images/KB.png'),
-      ('Alor Setar','ASR','assets/images/AlorSetar.png'),
-      ('Melaka','MK','assets/images/Melaka.png')
+      ('KL Sentral','KUL','assets/images/KL.png'),
+      ('Bukit Mertajam','KDH','assets/images/JB.png'),
+      ('Kota Bharu','KLN','assets/images/KB.png'),
+      ('Melaka','MLK','assets/images/AlorSetar.png'),
+      ('Penang Sentral','PNG','assets/images/Melaka.png')
 
     """);
 

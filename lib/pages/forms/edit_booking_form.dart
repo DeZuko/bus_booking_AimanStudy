@@ -55,7 +55,8 @@ class _EditBookingState extends State<EditBooking> {
     Database db = Provider.of<DbProvider>(context).db;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Booking'),
+        title: const Text('Edit My Booking'),
+        backgroundColor: Colors.deepPurple.shade800,
       ),
       body: FutureBuilder(
           future: DatabaseServices(db: db).getAllStation(),
@@ -175,7 +176,8 @@ class _EditBookingState extends State<EditBooking> {
                                 },
                               ),
                             ),
-                            gaphr(h: 25),
+                            gaphr(h: 30),
+
                             TextFormField(
                               readOnly: true,
                               onTap: () async => pickDate(),
@@ -201,7 +203,7 @@ class _EditBookingState extends State<EditBooking> {
                             ),
 
                             //Spacing
-                            gaphr(h: 25),
+                            gaphr(h: 30),
 
                             TextFormField(
                               readOnly: true,
@@ -279,21 +281,21 @@ class _EditBookingState extends State<EditBooking> {
                               child: Ink(
                                 decoration: const BoxDecoration(
                                   gradient: LinearGradient(colors: [
-                                    Color.fromARGB(255, 149, 87, 15),
-                                    Color.fromARGB(255, 248, 205, 107),
+                                    Color.fromARGB(255, 163, 94, 180),
+                                    Color.fromARGB(255, 108, 42, 117),
                                   ]),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(80.0)),
                                 ),
                                 child: Container(
-                                  constraints: const BoxConstraints(
-                                      minWidth: 88.0,
-                                      minHeight:
-                                          36.0), // min sizes for Material buttons
+                                  width: 140,
+                                  height: 50,
                                   alignment: Alignment.center,
                                   child: const Text(
-                                    'OK',
+                                    'Update',
                                     textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18),
                                   ),
                                 ),
                               ),

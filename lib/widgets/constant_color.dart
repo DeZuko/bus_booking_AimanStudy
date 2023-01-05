@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 const kcWhite = Color(0xffffffff);
-const kcBlack = Color.fromARGB(255, 236, 23, 23);
+const kcBlack = Color.fromARGB(255, 8, 8, 8);
 const kcPrimary = Color.fromARGB(200, 32, 140, 148);
 const kcDivider = Color(0xFFF4F4F4);
 MaterialColor kcPrimarySwatch = createMaterialColor(kcPrimary);

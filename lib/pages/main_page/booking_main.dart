@@ -19,6 +19,7 @@ class _BookingMainState extends State<BookingMain> {
   @override
   Widget build(BuildContext context) {
     Database db = Provider.of<DbProvider>(context).db;
+    // Work as whitespace
     return SizedBox(
       width: double.infinity,
       height: double.infinity,
@@ -39,7 +40,7 @@ class _BookingMainState extends State<BookingMain> {
                     children: [
                       Material(
                         elevation: 5,
-                        shape: cornerR(r: 11),
+                        shape: cornerR(r: 10),
                         color: Colors.transparent,
                         child: ClipRRect(
                           borderRadius: borderRadiuscR(r: 11),
@@ -47,13 +48,13 @@ class _BookingMainState extends State<BookingMain> {
                             padding: kwInset0,
                             color: kcWhite,
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/AddBooking',
-                                  arguments: stations[index]);
+                              Navigator.of(context).pushNamed('/AddBooking');
                             },
                             child: Column(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(16),
+                                  // Display stations as header
                                   child: Text(
                                     stations[index].station,
                                   ),

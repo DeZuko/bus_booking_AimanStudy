@@ -9,11 +9,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:mytest/database/database_provider.dart';
 
 class ProfilePage extends StatefulWidget {
-  // final User user;
-  const ProfilePage({
-    Key? key,
-    //required this.user,
-  }) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();

@@ -14,9 +14,9 @@ import 'package:provider/provider.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class AddBooking extends StatefulWidget {
-  final Station station;
+  // final Station station;
 
-  const AddBooking({Key? key, required this.station}) : super(key: key);
+  const AddBooking({Key? key}) : super(key: key);
 
   @override
   State<AddBooking> createState() => _AddBookingState();
@@ -27,38 +27,48 @@ class _AddBookingState extends State<AddBooking> {
   final departDateCon = TextEditingController();
   final departTimeCon = TextEditingController();
 
-  String? station;
+  String? departStation;
+  String? destStation;
 
   DateTime? departDate;
   TimeOfDay? departTime;
-  // Station? stationChoice;
 
   @override
   Widget build(BuildContext context) {
     Database db = Provider.of<DbProvider>(context).db;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.station.station,
-        ),
-      ),
       body: FutureBuilder(
           future: DatabaseServices(db: db).getAllStation(),
           builder: (_, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               List<Station> stations = snapshot.data;
-              stations.removeWhere(
-                  (element) => element.station == widget.station.station);
+              // stations.removeWhere(
+              //     (element) => element.station == widget.station.station);
               return SingleChildScrollView(
                 child: Form(
                   key: _formKey,
                   child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(
-                            16 * 2, 16 * 2, 16 * 2, 16 * 2),
+                        padding: const EdgeInsets.only(
+                            top: 32, right: 32, bottom: 32, left: 32),
                         child: Column(
                           children: [
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(right: 160, bottom: 10),
+                              child: const Text(
+                                "Departure Station",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18),
+                              ),
+                            ),
+
+                            // Depart Station
                             DropdownButtonHideUnderline(
                               child: DropdownButton2<String>(
                                 hint: const Text(
@@ -79,10 +89,11 @@ class _AddBookingState extends State<AddBooking> {
                                 icon: Icon(
                                   Icons.expand_more,
                                   size: 35,
-                                  color:
-                                      station != null ? kcPrimary : Colors.grey,
+                                  color: departStation != null
+                                      ? kcPrimary
+                                      : Colors.grey,
                                 ),
-                                value: station,
+                                value: departStation,
                                 items: stations
                                     .map(
                                       (e) => DropdownMenuItem<String>(
@@ -104,13 +115,81 @@ class _AddBookingState extends State<AddBooking> {
                                     .toList(),
                                 onChanged: (value) {
                                   setState(() {
-                                    station = value!;
+                                    departStation = value!;
                                   });
                                 },
                               ),
                             ),
                             gaphr(h: 25),
 
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(right: 150, bottom: 10),
+                              child: const Text(
+                                "Destination Station",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18),
+                              ),
+                            ),
+
+                            // Dest Station
+                            DropdownButtonHideUnderline(
+                              child: DropdownButton2<String>(
+                                hint: const Text(
+                                  'Destination Station',
+                                  style: kwinputStyle,
+                                ),
+                                style: kwinputStyle,
+                                buttonDecoration: BoxDecoration(
+                                    color: kcWhite,
+                                    borderRadius: BorderRadius.circular(4.r),
+                                    border: Border.all(
+                                      color: kcBlack,
+                                      width: 0.5,
+                                    )),
+                                buttonWidth: double.infinity,
+                                buttonPadding:
+                                    padOnlyR(l: 20, r: 5, b: 8, t: 8),
+                                icon: Icon(
+                                  Icons.expand_more,
+                                  size: 35,
+                                  color: destStation != null
+                                      ? kcPrimary
+                                      : Colors.grey,
+                                ),
+                                value: destStation,
+                                items: stations
+                                    .map(
+                                      (e) => DropdownMenuItem<String>(
+                                        value: e.station,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              e.station,
+                                              style: const TextStyle(
+                                                  color: kcBlack),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    destStation = value!;
+                                  });
+                                },
+                              ),
+                            ),
+                            gaphr(h: 40),
+
+                            // Depart Date
                             TextFormField(
                               readOnly: true,
                               onTap: () async => pickDate(),
@@ -134,10 +213,9 @@ class _AddBookingState extends State<AddBooking> {
                                 }
                               },
                             ),
+                            gaphr(h: 40),
 
-                            //Spacing
-                            gaphr(h: 25),
-
+                            // Depart Time
                             TextFormField(
                               readOnly: true,
                               onTap: () async => pickTime(),
@@ -161,21 +239,20 @@ class _AddBookingState extends State<AddBooking> {
                                 }
                               },
                             ),
-
-                            //Spacing
                             gaphr(h: 25),
-
-                            // Spacing
                             const SizedBox(height: 16 * 2),
+
+                            // Submit Button
                             MaterialButton(
                               padding: kwInset0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50.0),
                               ),
                               onPressed: () async {
-                                //todo booking
+                                // Validate form
                                 if (_formKey.currentState!.validate() &&
-                                    station != null) {
+                                    departStation != null) {
+                                  //
                                   DateTime depart = DateTime(
                                       departDate!.year,
                                       departDate!.month,
@@ -185,8 +262,9 @@ class _AddBookingState extends State<AddBooking> {
                                   BusTicket busTicket = BusTicket(
                                     departDate: depart,
                                     time: depart,
-                                    departStation: station!,
-                                    destStation: widget.station.station,
+                                    departStation: departStation!,
+                                    // Change here to destStation: destStation!,
+                                    destStation: destStation!,
                                     userId: Spreferences.getCurrentUserId()!,
                                   );
 
@@ -197,7 +275,7 @@ class _AddBookingState extends State<AddBooking> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content: Text(
-                                            'Booking Successful to ${widget.station.station}')),
+                                            'Booking from $departStation to $destStation, successful!')),
                                   );
                                   // Navigator.of(context).pop();
                                 } else {
@@ -212,8 +290,8 @@ class _AddBookingState extends State<AddBooking> {
                               child: Ink(
                                 decoration: const BoxDecoration(
                                   gradient: LinearGradient(colors: [
-                                    Color.fromARGB(255, 149, 87, 15),
-                                    Color.fromARGB(255, 248, 205, 107),
+                                    Color.fromARGB(255, 173, 170, 207),
+                                    Color.fromARGB(255, 85, 82, 131),
                                   ]),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(80.0)),
@@ -227,6 +305,7 @@ class _AddBookingState extends State<AddBooking> {
                                   child: const Text(
                                     'OK',
                                     textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -252,7 +331,7 @@ class _AddBookingState extends State<AddBooking> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1800),
-      lastDate: DateTime.now(),
+      lastDate: DateTime.utc(2024),
     ).then((date) {
       if (date == null) {
         return;

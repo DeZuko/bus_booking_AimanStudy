@@ -33,10 +33,15 @@ class _RegisterState extends State<Register> {
     Database db = Provider.of<DbProvider>(context).db;
     return Scaffold(
       body: Container(
-        color: const Color.fromARGB(201, 250, 181, 53),
+        color: const Color.fromARGB(200, 28, 16, 134),
         alignment: Alignment.center,
         child: Center(
           child: Card(
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(
+                  color: Color.fromARGB(255, 127, 207, 95), width: 5),
+              borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
+            ),
             margin: const EdgeInsets.symmetric(horizontal: 35),
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -46,101 +51,153 @@ class _RegisterState extends State<Register> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     /// username
-                    TextFormField(
-                      controller: username,
-                      decoration: const InputDecoration(labelText: 'Username'),
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'This field is required';
-                        }
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 15.0, right: 15.0, top: 20),
+                      child: TextFormField(
+                          controller: username,
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'This field is required';
+                            }
 
-                        if (value.trim().length < 4) {
-                          return 'Username must be at least 4 characters in length';
-                        }
-                        // Return null if the entered username is valid
-                        return null;
-                      },
+                            if (value.trim().length < 4) {
+                              return 'Username must be at least 4 characters in length';
+                            }
+                            // Return null if the entered username is valid
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.people),
+                              labelText: "Username",
+                              enabledBorder: myinputborder(),
+                              focusedBorder: myfocusborder(),
+                              hintText: 'Please enter username')),
                     ),
 
-                    TextFormField(
-                      controller: fName,
-                      decoration:
-                          const InputDecoration(labelText: 'First Name'),
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'This field is required';
-                        }
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 15.0, right: 15.0, top: 10),
+                      child: TextFormField(
+                          controller: fName,
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'This field is required';
+                            }
 
-                        if (value.trim().length < 4) {
-                          return 'Username must be at least 4 characters in length';
-                        }
-                        // Return null if the entered username is valid
-                        return null;
-                      },
+                            if (value.trim().length < 4) {
+                              return 'Username must be at least 4 characters in length';
+                            }
+                            // Return null if the entered username is valid
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.people),
+                              labelText: "First Name",
+                              enabledBorder: myinputborder(),
+                              focusedBorder: myfocusborder(),
+                              hintText: 'Please enter first name')),
                     ),
 
-                    TextFormField(
-                      controller: lName,
-                      decoration: const InputDecoration(labelText: 'Last Name'),
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'This field is required';
-                        }
+                    const SizedBox(height: 10.0),
 
-                        if (value.trim().length < 4) {
-                          return 'Username must be at least 4 characters in length';
-                        }
-                        // Return null if the entered username is valid
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: mobileHp,
-                      decoration:
-                          const InputDecoration(labelText: 'Phone Number'),
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'This field is required';
-                        }
+                    // Formfield lName
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: TextFormField(
+                          controller: lName,
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'This field is required';
+                            }
 
-                        if (value.trim().length < 9) {
-                          return 'phone number must be at least 9 characters in length';
-                        }
-                        // Return null if the entered username is valid
-                        return null;
-                      },
+                            if (value.trim().length < 4) {
+                              return 'Name must be at least 4 characters in length';
+                            }
+                            // Return null if the entered username is valid
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.people),
+                              labelText: "Last Name",
+                              enabledBorder: myinputborder(),
+                              focusedBorder: myfocusborder(),
+                              hintText: 'Please enter last name')),
                     ),
+
+                    const SizedBox(height: 10.0),
+
+                    // Formfield password
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: TextFormField(
+                          controller: mobileHp,
+                          keyboardType: TextInputType.number,
+                          obscureText: true,
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'This field is required';
+                            }
+
+                            if (value.trim().length < 9) {
+                              return 'phone number must be at least 9 characters in length';
+                            }
+                            // Return null if the entered username is valid
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.lock),
+                              labelText: "Phone Number",
+                              enabledBorder: myinputborder(),
+                              focusedBorder: myfocusborder(),
+                              hintText: 'Please enter Phone Number')),
+                    ),
+
+                    const SizedBox(height: 10.0),
+
                     // Password
-                    TextFormField(
-                      controller: password,
-                      decoration: const InputDecoration(labelText: 'Password'),
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'This field is required';
-                        }
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: TextFormField(
+                          controller: password,
+                          obscureText: true,
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'This field is required';
+                            }
 
-                        if (value.trim().length < 8) {
-                          return 'Password must be at least 8 characters in length';
-                        }
-                        // Return null if the entered password is valid
-                        return null;
-                      },
+                            if (value.trim().length < 8) {
+                              return 'Password must be at least 8 characters in length';
+                            }
+                            // Return null if the entered password is valid
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.lock),
+                              labelText: "Password",
+                              enabledBorder: myinputborder(),
+                              focusedBorder: myfocusborder(),
+                              hintText: 'Please enter password')),
                     ),
 
                     gaphr(),
 
                     Container(
-                      alignment: Alignment.centerRight,
-                      child: OutlinedButton(
-                        child: const Text('Register'),
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.purple.shade200),
+                        child: const Text(
+                          'Register',
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        ),
                         onPressed: () async {
                           // If the form field validated
                           if (_formKey.currentState!.validate()) {
                             // Pass the local variable to database value
                             User user = User(
                                 fName: fName.text,
-                                lName: fName.text,
+                                lName: lName.text,
                                 password: password.text,
                                 mobileHp: mobileHp.text,
                                 username: username.text);
@@ -168,7 +225,7 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(
                       width: double.infinity,
-                      height: 100,
+                      height: 50,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -181,7 +238,6 @@ class _RegisterState extends State<Register> {
                               color: Colors.black,
                             ),
                           ),
-                          gapwr(w: 6),
                           TextButton(
                             child: Text(
                               "Sign in",
@@ -189,7 +245,7 @@ class _RegisterState extends State<Register> {
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14.sp,
-                                color: const Color.fromARGB(255, 219, 168, 126),
+                                color: const Color.fromARGB(255, 113, 52, 209),
                               ),
                             ),
                             onPressed: () {
@@ -207,5 +263,25 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  OutlineInputBorder myinputborder() {
+    //return type is OutlineInputBorder
+    return const OutlineInputBorder(
+        //Outline border type for TextFeild
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderSide: BorderSide(
+          color: Color.fromARGB(255, 186, 176, 212),
+          width: 3,
+        ));
+  }
+
+  OutlineInputBorder myfocusborder() {
+    return const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderSide: BorderSide(
+          color: Color.fromARGB(255, 185, 121, 204),
+          width: 3,
+        ));
   }
 }

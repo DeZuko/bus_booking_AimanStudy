@@ -27,7 +27,7 @@ class _BookingCartState extends State<BookingCart> {
           future: DatabaseServices(db: db).getAllBooking(),
           builder: (_, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
-              print('here');
+              // print('here');
               List<BusTicket> bookings = snapshot.data;
               return RefreshIndicator(
                 onRefresh: () async {
@@ -51,7 +51,7 @@ class _BookingCartState extends State<BookingCart> {
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
                       child: ListTile(
                         title: Text(
-                          bookings[index].destStation,
+                          "${bookings[index].departStation} -> ${bookings[index].destStation} ",
                           style: const TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w600,

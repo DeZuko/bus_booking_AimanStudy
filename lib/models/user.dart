@@ -26,11 +26,11 @@ class User {
   }) {
     return User(
       id: id ?? this.id,
-      fName: firstName ?? this.fName,
-      lName: lastName ?? this.lName,
-      username: userName ?? this.username,
+      fName: firstName ?? fName,
+      lName: lastName ?? lName,
+      username: userName ?? username,
       password: password ?? this.password,
-      mobileHp: phoneNum ?? this.mobileHp,
+      mobileHp: phoneNum ?? mobileHp,
     );
   }
 

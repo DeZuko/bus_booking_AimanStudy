@@ -1,8 +1,7 @@
 import 'package:mytest/pages/authentication/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:mytest/pages/forms/add_booking_form.dart';
 import 'package:mytest/pages/main_page/booking_cart.dart';
-import 'package:mytest/pages/main_page/profile_page.dart';
-import 'package:mytest/pages/main_page/booking_main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -16,9 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final List<String> cards = [
-    "Station",
-    "Booking",
-    // "Profile",
+    "Please Book Your Ticket",
+    "Your Booking",
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -47,21 +45,20 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           cards[_selectedIndex],
           style: const TextStyle(
-            color: Color.fromARGB(162, 73, 44, 10),
+            color: Color.fromARGB(160, 255, 255, 255),
             fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 147, 94, 50),
+        backgroundColor: const Color.fromARGB(255, 61, 54, 158),
       ),
 
       // Cards
       body: IndexedStack(
         index: _selectedIndex,
         children: const [
-          BookingMain(),
+          AddBooking(),
           BookingCart(),
-          // ProfilePage(),
         ],
       ),
 
@@ -69,20 +66,16 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.category_outlined),
+            icon: Icon(Icons.book_outlined),
             label: 'Booking',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_shopping_cart),
             label: 'Cart',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.person_outline),
-          //   label: 'Profile',
-          // ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 232, 172, 93),
+        selectedItemColor: const Color.fromARGB(255, 61, 54, 158),
         onTap: _onItemTapped,
       ),
     );
