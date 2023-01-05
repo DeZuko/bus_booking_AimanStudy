@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:mytest/widgets/constant_color.dart';
 import 'package:mytest/widgets/constant_widget.dart';
-import 'package:mytest/pages/authentication/shared_preferences.dart';
+import 'package:mytest/authentication/shared_preferences.dart';
 import 'package:mytest/models/bus_ticket.dart';
 import 'package:mytest/models/station.dart';
 import 'package:mytest/database/database_service.dart';
