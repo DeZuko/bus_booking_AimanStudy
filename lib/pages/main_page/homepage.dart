@@ -1,6 +1,6 @@
-import 'package:mytest/pages/authentication/shared_preferences.dart';
+import 'package:mytest/authentication/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:mytest/pages/forms/add_booking_form.dart';
+import 'package:mytest/forms/add_booking_form.dart';
 import 'package:mytest/pages/main_page/booking_cart.dart';
 
 class HomePage extends StatefulWidget {

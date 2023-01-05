@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mytest/widgets/constant_color.dart';
-import 'package:mytest/pages/authentication/shared_preferences.dart';
+import 'package:mytest/authentication/shared_preferences.dart';
 import 'package:mytest/database/database_init.dart';
 import 'package:mytest/database/database_provider.dart';
 import 'package:mytest/routing.dart';
