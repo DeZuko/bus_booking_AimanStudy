@@ -266,7 +266,7 @@ class _EditBookingState extends State<EditBooking> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content: Text(
-                                            'Edit Booking Successful to $destStation')),
+                                            'Successfully edited to $departStation -> $destStation')),
                                   );
                                   Navigator.of(context).pop();
                                 } else {
