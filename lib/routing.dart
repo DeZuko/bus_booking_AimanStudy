@@ -10,13 +10,15 @@ class RouteGenerator {
     final args = settings.arguments;
 
     switch (settings.name) {
+      // Called during the first open
       case '/':
         return CupertinoPageRoute(builder: (_) => const FirstPage());
-      case '/AddBooking':
-        return CupertinoPageRoute(builder: (_) => const AddBooking());
+      // Called when updating cart
       case '/EditBooking':
         return CupertinoPageRoute(
             builder: (_) => EditBooking(busTicket: args as BusTicket));
+      // case '/AddBooking':
+      //   return CupertinoPageRoute(builder: (_) => const AddBooking());
       default:
         return CupertinoPageRoute(builder: (_) => const FirstPage());
     }

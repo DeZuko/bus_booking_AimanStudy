@@ -16,9 +16,13 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  // Declare form key instance
   final _formKey = GlobalKey<FormState>();
+
+  // Declare controller instance for textformfield
   final username = TextEditingController();
   final password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Database db = Provider.of<DbProvider>(context).db;
@@ -30,12 +34,11 @@ class _SignInState extends State<SignIn> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //Spacing
-
                 const SizedBox(
                   height: 50,
                 ),
 
+                // Display welcome title
                 const Padding(
                   padding: EdgeInsets.only(top: 150, left: 62, right: 67),
                   child: Text(
@@ -47,6 +50,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
 
+                // Display subtitle
                 const Padding(
                   padding: EdgeInsets.only(left: 80, right: 70, bottom: 30),
                   child: Text(
@@ -59,6 +63,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
 
+                // Username Form Field
                 SizedBox(
                   width: 350,
                   child: TextFormField(
@@ -80,6 +85,7 @@ class _SignInState extends State<SignIn> {
 
                 const SizedBox(height: 10.0),
 
+                // Password Form Field
                 SizedBox(
                   width: 350,
                   child: TextFormField(
@@ -100,7 +106,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
 
-                //Login Button
+                // Submit Button
                 Container(
                   margin: const EdgeInsets.all(25),
                   alignment: Alignment.center,
@@ -115,6 +121,8 @@ class _SignInState extends State<SignIn> {
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        // Check if the input username and password correct
+                        // Based on user table
                         dynamic result = await DatabaseServices(db: db).login(
                           username.text,
                           password.text,
@@ -130,6 +138,7 @@ class _SignInState extends State<SignIn> {
                                 content: Text(
                                     'Login successful. Hi, ${user.username}.')),
                           );
+                          // Navigate to FirstPage()
                           Navigator.of(context).pushReplacementNamed('/');
                         } else {
                           if (!mounted) return;
@@ -143,6 +152,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
 
+                // Register button
                 SizedBox(
                   width: double.infinity,
                   height: 80,
@@ -165,7 +175,7 @@ class _SignInState extends State<SignIn> {
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w600,
                             fontSize: 14.sp,
-                            color: Color.fromARGB(255, 131, 124, 233),
+                            color: const Color.fromARGB(255, 131, 124, 233),
                           ),
                         ),
                         onPressed: () {

@@ -21,6 +21,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   // Declare global key for form
   final _formKey = GlobalKey<FormState>();
+
   // Declare text controller for input
   final fName = TextEditingController();
   final lName = TextEditingController();
@@ -45,12 +46,13 @@ class _RegisterState extends State<Register> {
             margin: const EdgeInsets.symmetric(horizontal: 35),
             child: Padding(
               padding: const EdgeInsets.all(20),
+              // FORM
               child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    /// username
+                    /// Formfield username
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 15.0, right: 15.0, top: 20),
@@ -75,6 +77,7 @@ class _RegisterState extends State<Register> {
                               hintText: 'Please enter username')),
                     ),
 
+                    // Formfield First Name
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 15.0, right: 15.0, top: 10),
@@ -86,7 +89,7 @@ class _RegisterState extends State<Register> {
                             }
 
                             if (value.trim().length < 4) {
-                              return 'Username must be at least 4 characters in length';
+                              return 'First Name must be at least 4 characters in length';
                             }
                             // Return null if the entered username is valid
                             return null;
@@ -101,7 +104,7 @@ class _RegisterState extends State<Register> {
 
                     const SizedBox(height: 10.0),
 
-                    // Formfield lName
+                    // Formfield last name
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: TextFormField(
@@ -154,7 +157,7 @@ class _RegisterState extends State<Register> {
 
                     const SizedBox(height: 10.0),
 
-                    // Password
+                    // Formfield Password
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: TextFormField(
@@ -181,6 +184,7 @@ class _RegisterState extends State<Register> {
 
                     gaphr(),
 
+                    // Submit button
                     Container(
                       alignment: Alignment.center,
                       child: ElevatedButton(
@@ -222,6 +226,8 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                     ),
+
+                    // Toggle from register -> sign in page
                     SizedBox(
                       width: double.infinity,
                       height: 50,

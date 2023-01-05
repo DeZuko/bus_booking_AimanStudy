@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: kcPrimarySwatch,
             ),
+            // FirstPage() is the first one appear
             initialRoute: '/',
             onGenerateRoute: RouteGenerator.generateRoute,
           );

@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-              // Set session validation = false
+              // Set the session validation = false
               await Spreferences.setIsLogin(false);
               await Spreferences.setCurrentUserId(0);
               if (!mounted) return;
@@ -57,7 +57,9 @@ class _HomePageState extends State<HomePage> {
       body: IndexedStack(
         index: _selectedIndex,
         children: const [
+          // Booking Form
           AddBooking(),
+          // Booking Cart
           BookingCart(),
         ],
       ),

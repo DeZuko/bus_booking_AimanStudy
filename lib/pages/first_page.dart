@@ -15,9 +15,12 @@ class _FirstPageState extends State<FirstPage> {
 
   @override
   Widget build(BuildContext context) {
+    // If the session has logged user, go to HomePage()
     if (isLogin != null && isLogin == true) {
       return const HomePage();
-    } else {
+    }
+    // Otherwise, go to sign-in page
+    else {
       return const Authentication();
     }
   }

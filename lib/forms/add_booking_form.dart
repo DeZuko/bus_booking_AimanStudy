@@ -3,6 +3,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:mytest/pages/main_page/booking_cart.dart';
 import 'package:mytest/widgets/constant_color.dart';
 import 'package:mytest/widgets/constant_widget.dart';
 import 'package:mytest/authentication/shared_preferences.dart';
@@ -14,8 +15,6 @@ import 'package:provider/provider.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class AddBooking extends StatefulWidget {
-  // final Station station;
-
   const AddBooking({Key? key}) : super(key: key);
 
   @override
@@ -42,13 +41,10 @@ class _AddBookingState extends State<AddBooking> {
           builder: (_, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               List<Station> stations = snapshot.data;
-              // stations.removeWhere(
-              //     (element) => element.station == widget.station.station);
               return SingleChildScrollView(
                 child: Form(
                   key: _formKey,
                   child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(
@@ -277,9 +273,13 @@ class _AddBookingState extends State<AddBooking> {
                                         content: Text(
                                             'Booking from $departStation to $destStation, successful!')),
                                   );
-                                  // Navigator.of(context).pop();
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => const BookingCart(),
+                                  //   ),
+                                  // );
                                 } else {
-                                  // if (!mounted) return;
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content: Text(

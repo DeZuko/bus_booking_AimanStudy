@@ -9,6 +9,7 @@ class DatabaseServices {
     required this.db,
   });
 
+  /* USER RELATED*/
   // INSERT based on username (Registration)
   Future<dynamic> register(User user) async {
     // Check if username existed
@@ -47,19 +48,20 @@ class DatabaseServices {
     }
   }
 
-  Future<List<Station>> getAllStation() async {
-    List<Station> result = (await db.query('station_type'))
-        .map((e) => Station.fromMap(e))
-        .toList();
-
-    return result;
-  }
-
-  /* BOOKING */
+  /* BOOKING SERVICES*/
   // GET all booking
   Future<List<BusTicket>> getAllBooking() async {
     List<BusTicket> result =
         (await db.query('busticket')).map((e) => BusTicket.fromMap(e)).toList();
+
+    return result;
+  }
+
+  // GET station
+  Future<List<Station>> getAllStation() async {
+    List<Station> result = (await db.query('station_type'))
+        .map((e) => Station.fromMap(e))
+        .toList();
 
     return result;
   }

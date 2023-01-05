@@ -14,8 +14,6 @@ class DbInit {
     )
     """);
 
-    //VARCHAR(50)
-
     await db.execute("""
     CREATE TABLE station_type(
       id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
